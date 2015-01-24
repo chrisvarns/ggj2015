@@ -20,8 +20,21 @@ public class Constants {
 
     public enum Status : int
     {
-        Broken = 0,
-        Damaged = 1,
-        FullyFunctional = 2
+        BROKEN = 0,
+        DAMAGED = 1,
+        HEALTHY = 2
     };
+
+	public enum AssignedSystem : int
+	{
+		UNASSIGNED = -1,
+		ENGINES,
+		GENERATOR,
+		HULL,
+		SHIELD,
+		WEAPONS,
+		OXYGEN,
+		HYPERDRIVE,
+		NUMSYSTEMS
+	}
 }

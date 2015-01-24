@@ -27,24 +27,24 @@ public class Ship {
         ship.m_hullHealth = hullDef.m_maxHealth;
         // Oxygen
         ship.m_oxygenLevel = Constants.kMaxOxygen;
-        ship.m_oxygenSystemStatus = Constants.Status.FullyFunctional;
+        ship.m_oxygenSystemStatus = Constants.Status.HEALTHY;
         // Shields
         ShieldDef shieldDef = pShieldDefs[Random.Range(0, pShieldDefs.Length)];
         ship.m_shieldDefinition = shieldDef;
 		ship.m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
-		ship.m_shieldSystemStatus = Constants.Status.FullyFunctional;
+		ship.m_shieldSystemStatus = Constants.Status.HEALTHY;
         // Engines
         EngineDef engineDef = pEngineDefs[Random.Range(0, pEngineDefs.Length)];
         ship.m_engineDefinition = engineDef;
         ship.m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
-        ship.m_engineSystemStatus = Constants.Status.FullyFunctional;
+        ship.m_engineSystemStatus = Constants.Status.HEALTHY;
         // Generator
         GeneratorDef generatorDef = pGeneratorDefs[Random.Range(0, pGeneratorDefs.Length)];
         ship.m_generatorDefinition = generatorDef;
-        ship.m_generatorSystemStatus = Constants.Status.FullyFunctional;
+        ship.m_generatorSystemStatus = Constants.Status.HEALTHY;
         // HyperDrive
         ship.m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
-        ship.m_hyperdriveSystemStatus = Constants.Status.FullyFunctional;
+        ship.m_hyperdriveSystemStatus = Constants.Status.HEALTHY;
 
         // Weapons 1-4
         int numWeapons = 2 + Random.Range(0, 3);
@@ -58,7 +58,7 @@ public class Ship {
                     weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
                 }
                 ship.m_weapons[i].m_definition = weaponDef;
-                ship.m_weapons[i].m_status = Constants.Status.FullyFunctional;
+                ship.m_weapons[i].m_status = Constants.Status.HEALTHY;
                 ship.m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
             }
             else
@@ -69,6 +69,11 @@ public class Ship {
 
         // Crew 1-4
         int numCrew = 1 + Random.Range(0, Constants.kMaxCrew);
+		List<string> existingNames;
+		for (int i=0; i < Constants.kMaxCrew; i++)
+		{
+			ship.m_crew[i] = (i < numCrew) ? Crew.Create(existingNames) : ship.m_crew[i] = null;
+		}
 
         return ship;
     }
