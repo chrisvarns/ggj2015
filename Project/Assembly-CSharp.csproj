@@ -56,6 +56,8 @@
      <Compile Include="Assets\Scripts\Ship.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\Scripts\WeaponDef.cs" />
+     <Compile Include="Assets\Starfield\Star.cs" />
+     <Compile Include="Assets\Starfield\Starfield.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>I:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
