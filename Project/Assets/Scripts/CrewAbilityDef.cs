@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Weapon {
+public class CrewAbilityDef {
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class Weapon {
 	
 	}
 
-    public WeaponDef wep_saddr;
-    public int wep_power;
-    public Constants.Status wep_status;
+    public string m_name;
+    public int m_affectedSystem;
+    public int m_modifier;
 }

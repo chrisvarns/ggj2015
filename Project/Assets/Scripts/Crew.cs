@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CrewAbilityDef {
+public class Crew {
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,8 @@ public class CrewAbilityDef {
 	
 	}
 
-    public string name;
-    public int affectedSystem;
-    public int modifier;
+    public string m_name;
+	public Constants.Status m_status;
+    public CrewAbilityDef m_definition;
+    public int m_assignedSystem;
 }
