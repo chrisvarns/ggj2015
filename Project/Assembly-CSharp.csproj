@@ -54,6 +54,8 @@
      <Compile Include="Assets\HullDef.cs" />
      <Compile Include="Assets\ShieldDef.cs" />
      <Compile Include="Assets\Ship.cs" />
+     <Compile Include="Assets\Starfield\Star.cs" />
+     <Compile Include="Assets\Starfield\Starfield.cs" />
      <Compile Include="Assets\Weapon.cs" />
      <Compile Include="Assets\WeaponDef.cs" />
  <Reference Include="UnityEngine.UI">
