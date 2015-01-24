@@ -20,4 +20,11 @@ public class GeneratorDef {
     }
     public string m_name;
     public int m_powerOutputPerTurn;
+
+	public static GeneratorDef[] s_generatorDefs =
+	{
+		new GeneratorDef("Ole Smokey", 4),
+		new GeneratorDef("Medium", 7),
+		new GeneratorDef("Large", 10)
+	};
 }

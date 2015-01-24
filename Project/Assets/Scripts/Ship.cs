@@ -17,8 +17,7 @@ public class Ship {
             GeneratorDef[] pGeneratorDefs,
             ShieldDef[] pShieldDefs,
             EngineDef[] pEngineDefs,
-            WeaponDef[] pWeaponDefs,
-            CrewAbilityDef[] pCrewAbilityDefs)
+            WeaponDef[] pWeaponDefs)
     {
         Ship ship = new Ship();
         
@@ -75,6 +74,12 @@ public class Ship {
     }
 
     private Ship() { }
+	public static Ship Create()
+	{
+		return Create (HullDef.s_hullDefs, GeneratorDef.s_generatorDefs,
+		              ShieldDef.s_shieldDefs, EngineDef.s_engineDefs, WeaponDef.s_weaponDefs);
+	}
+
     public HullDef m_hullDefinition;
     public int m_hullHealth;
     public GeneratorDef m_generatorDefinition;

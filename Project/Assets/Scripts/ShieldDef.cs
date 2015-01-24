@@ -22,4 +22,11 @@ public class ShieldDef {
     public string m_name;
     public int m_powerPerLayer;
     public int m_powerCapacity;
+
+	public static ShieldDef[] s_shieldDefs =
+	{
+		new ShieldDef("Magnetic Deflector", 3, 6),
+		new ShieldDef("Ion Repulsor", 4, 12),
+		new ShieldDef("Large", 5, 25)
+	};
 }

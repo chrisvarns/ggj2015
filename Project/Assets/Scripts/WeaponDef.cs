@@ -29,4 +29,12 @@ public class WeaponDef {
     public int m_shieldDamage;
     public int m_powerPerShot;
     public int m_powerCapacity;
+
+	public static WeaponDef[] s_weaponDefs =
+	{
+		new WeaponDef("Lazer", 0.25f, 1, 1, 2, 10),
+		new WeaponDef("Torpedo", 1.0f, 2, 0, 7, 7),
+		new WeaponDef("Ion Cannon", 0.0f, 0, 3, 10, 10),
+		new WeaponDef("Nuke", 1.0f, 50, 0, 60, 60)
+	};
 }
