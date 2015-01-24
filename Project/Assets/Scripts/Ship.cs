@@ -3,40 +3,74 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Ship 
+public class Ship : MonoBehaviour
 {
-    public static Ship Create(HullDef[] pHullDefs,
-            GeneratorDef[] pGeneratorDefs,
-            ShieldDef[] pShieldDefs,
-            EngineDef[] pEngineDefs,
-            WeaponDef[] pWeaponDefs)
+    public GameObject[] position_tags = new GameObject[(int)AssignedSystem.__SIZE__];       // hold gameobject for the position tags.
+    public UnityEngine.Object[] crew_prefab = new UnityEngine.Object[(int)Race.__SIZE__];   // holds references to the crew prefabs
+
+
+    private HullDef m_hullDefinition;
+    private int m_hullHealth;
+    private GeneratorDef m_generatorDefinition;
+    private Status m_generatorSystemStatus;
+    private int m_oxygenLevel;
+    private Status m_oxygenSystemStatus;
+    private ShieldDef m_shieldDefinition;
+    private int m_shieldPower;
+    private Status m_shieldSystemStatus;
+    private EngineDef m_engineDefinition;
+    private int m_enginePower;
+    private Status m_engineSystemStatus;
+    private int m_hyperdrivePower;
+    private Status m_hyperdriveSystemStatus;
+    private Weapon[] m_weapons = new Weapon[4];
+    private Crew[] m_crew = new Crew[4];
+
+
+    void Start()
     {
-        Ship ship = new Ship();
+        Generate();  // test if the ship is working.
+    }
+
+    void Update()
+    {
+
+    }
+
+
+    public void Generate()      // genreate a rabdom ship.
+    {
+        HullDef[] pHullDefs = HullDef.s_hullDefs;
+        GeneratorDef[] pGeneratorDefs = GeneratorDef.s_generatorDefs;
+        ShieldDef[] pShieldDefs = ShieldDef.s_shieldDefs;
+        EngineDef[] pEngineDefs = EngineDef.s_engineDefs;
+        WeaponDef[] pWeaponDefs = WeaponDef.s_weaponDefs;
+
         
         // Hull
         HullDef hullDef = pHullDefs[Random.Range(0, pHullDefs.Length)];
-        ship.m_hullDefinition = hullDef;
-        ship.m_hullHealth = hullDef.m_maxHealth;
+        m_hullDefinition = hullDef;
+        m_hullHealth = hullDef.m_maxHealth;
         // Oxygen
-        ship.m_oxygenLevel = Constants.kMaxOxygen;
-        ship.m_oxygenSystemStatus = Status.HEALTHY;
+        m_oxygenLevel = Constants.kMaxOxygen;
+        m_oxygenSystemStatus = Status.HEALTHY;
         // Shields
         ShieldDef shieldDef = pShieldDefs[Random.Range(0, pShieldDefs.Length)];
-        ship.m_shieldDefinition = shieldDef;
-		ship.m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
-		ship.m_shieldSystemStatus = Status.HEALTHY;
+        m_shieldDefinition = shieldDef;
+		m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
+		m_shieldSystemStatus = Status.HEALTHY;
         // Engines
         EngineDef engineDef = pEngineDefs[Random.Range(0, pEngineDefs.Length)];
-        ship.m_engineDefinition = engineDef;
-        ship.m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
-        ship.m_engineSystemStatus = Status.HEALTHY;
+        m_engineDefinition = engineDef;
+        m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
+        m_engineSystemStatus = Status.HEALTHY;
         // Generator
         GeneratorDef generatorDef = pGeneratorDefs[Random.Range(0, pGeneratorDefs.Length)];
-        ship.m_generatorDefinition = generatorDef;
-        ship.m_generatorSystemStatus = Status.HEALTHY;
+        m_generatorDefinition = generatorDef;
+        m_generatorSystemStatus = Status.HEALTHY;
         // HyperDrive
-        ship.m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
-        ship.m_hyperdriveSystemStatus = Status.HEALTHY;
+        m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
+        m_hyperdriveSystemStatus = Status.HEALTHY;
 
         // Weapons 1-4
         int numWeapons = 2 + Random.Range(0, 3);
@@ -44,53 +78,74 @@ public class Ship
         {
             if (i < numWeapons)
             {
+                m_weapons[i] = new Weapon();
+
                 WeaponDef weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
                 while (i == 0 && weaponDef.m_hullDamage == 0)
                 {
                     weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
                 }
-                ship.m_weapons[i].m_definition = weaponDef;
-                ship.m_weapons[i].m_status = Status.HEALTHY;
-                ship.m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
+                m_weapons[i].m_definition = weaponDef;
+                m_weapons[i].m_status = Status.HEALTHY;
+                m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
             }
             else
             {
-                ship.m_weapons[i] = null;
+                m_weapons[i] = null;
             }
         }
 
+
         // Crew 1-4
+        int[] starting_pos = new int[(int)AssignedSystem.__SIZE__];
+        for (int i = 0; i < starting_pos.Length; i++)
+        {
+            starting_pos[i] = i;
+        }
+        Shuffle(starting_pos);
+
         int numCrew = 1 + Random.Range(0, Constants.kMaxCrew);
         List<string> existingNames = new List<string>();
 		for (int i = 0; i < Constants.kMaxCrew; i++)
 		{
-			ship.m_crew[i] = (i < numCrew) ? Crew.Create(existingNames, i) : ship.m_crew[i] = null;
+            m_crew[i] = (i < numCrew) ? Crew.Create(existingNames, starting_pos[i]) : m_crew[i] = null;
+
+            if (m_crew[i] != null)
+            {
+                m_crew[i].instance = Instantiate(crew_prefab[(int)m_crew[i].m_race]) as GameObject;
+                m_crew[i].instance.name = "Crew Member " + i;
+                m_crew[i].instance.transform.position = Vector3.zero;
+                m_crew[i].instance.transform.rotation = Quaternion.identity;
+            }
 		}
 
-        return ship;
+        PositionCrew();
     }
 
-    private Ship() { }
-	public static Ship Create()
-	{
-		return Create (HullDef.s_hullDefs, GeneratorDef.s_generatorDefs,
-		              ShieldDef.s_shieldDefs, EngineDef.s_engineDefs, WeaponDef.s_weaponDefs);
-	}
+    static void Shuffle<T>(T[] array)
+    {
+        int n = array.Length;
+        for (int i = 0; i < n; i++)
+        {
+            int r = i + (int)(UnityEngine.Random.Range(0f, 1f) * (n - i));
+            T t = array[r];
+            array[r] = array[i];
+            array[i] = t;
+        }
+    }
 
-    public HullDef m_hullDefinition;
-    public int m_hullHealth;
-    public GeneratorDef m_generatorDefinition;
-    public Status m_generatorSystemStatus;
-    public int m_oxygenLevel;
-    public Status m_oxygenSystemStatus;
-    public ShieldDef m_shieldDefinition;
-    public int m_shieldPower;
-    public Status m_shieldSystemStatus;
-    public EngineDef m_engineDefinition;
-    public int m_enginePower;
-    public Status m_engineSystemStatus;
-    public int m_hyperdrivePower;
-    public Status m_hyperdriveSystemStatus;
-    public Weapon[] m_weapons = new Weapon[4];
-    public Crew[] m_crew = new Crew[4];
+    public void PositionCrew()
+    {
+        foreach (Crew crew in m_crew)
+        {
+            if (crew == null)
+            {
+                continue;
+            }
+
+            crew.instance.transform.parent = position_tags[(int)crew.m_assignedSystem].transform;
+            crew.instance.transform.localPosition = Vector3.zero;
+            crew.instance.transform.localRotation = Quaternion.identity;
+        }
+    }
 }

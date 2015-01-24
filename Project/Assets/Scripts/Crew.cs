@@ -12,16 +12,27 @@ public enum AssignedSystem : int
     WEAPONS,
     OXYGEN,
     HYPERDRIVE,
-    NUMSYSTEMS
+    __SIZE__
+}
+
+
+public enum Race : int
+{
+    Human = 0,
+    Android,
+    Worm,
+    __SIZE__
 }
 
 
 public class Crew 
 {
+    public GameObject instance;
     public string m_name;
 	public Status m_status;
     public CrewAbilityDef m_definition;
     public AssignedSystem m_assignedSystem;
+    public Race m_race;
 
 	public static string[] s_potentialNames =
 	{
@@ -60,6 +71,7 @@ public class Crew
 		newCrew.m_definition = null;
 		newCrew.m_status = Status.HEALTHY;
 		newCrew.m_assignedSystem = (AssignedSystem)system_index;
+        newCrew.m_race = (Race)UnityEngine.Random.Range(0, (int)Race.__SIZE__);
 		return newCrew;
 	}
 }
