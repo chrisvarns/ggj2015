@@ -13,8 +13,8 @@ public class Crew {
 	
 	}
 
-    public string crw_name;
-    public int crw_health;
-    public CrewAbilityDef crw_abaddr;
-    public int crw_system;
+    public string m_name;
+	public Constants.Status m_status;
+    public CrewAbilityDef m_definition;
+    public int m_assignedSystem;
 }

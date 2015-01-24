@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Weapon {
@@ -13,7 +13,7 @@ public class Weapon {
 	
 	}
 
-    public WeaponDef wep_saddr;
-    public int wep_power;
-    public Constants.Status wep_status;
+    public WeaponDef m_definition;
+    public int m_power;
+    public Constants.Status m_status;
 }

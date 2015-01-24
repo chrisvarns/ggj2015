@@ -16,17 +16,17 @@ public class WeaponDef {
     public WeaponDef(string pName, float pShieldPenChangePct, int pHullDamage, int pShieldDamage,
             int pPowerPerShot, int pPowerCapacity)
     {
-        name = pName;
-        shieldPenChancePct = pShieldPenChangePct;
-        hullDamage = pHullDamage;
-        shieldDamage = pShieldDamage;
-        powerPerShot = pPowerPerShot;
-        powerCapacity = pPowerCapacity;
+        m_name = pName;
+        m_shieldPenChancePct = pShieldPenChangePct;
+        m_hullDamage = pHullDamage;
+        m_shieldDamage = pShieldDamage;
+        m_powerPerShot = pPowerPerShot;
+        m_powerCapacity = pPowerCapacity;
     }
-    public string name;
-    public float shieldPenChancePct;
-    public int hullDamage;
-    public int shieldDamage;
-    public int powerPerShot;
-    public int powerCapacity;
+    public string m_name;
+    public float m_shieldPenChancePct;
+    public int m_hullDamage;
+    public int m_shieldDamage;
+    public int m_powerPerShot;
+    public int m_powerCapacity;
 }

@@ -15,13 +15,13 @@ public class EngineDef {
 
     public EngineDef(string pName, int pPowerPerCharge, int pPowerCapacity, float pChanceToDodge)
     {
-        name = pName;
-        powerPerCharge = pPowerPerCharge;
-        powerCapacity = pPowerCapacity;
-        chanceToDodge = pChanceToDodge;
+        m_name = pName;
+        m_powerPerCharge = pPowerPerCharge;
+        m_powerCapacity = pPowerCapacity;
+        m_chanceToDodge = pChanceToDodge;
     }
-    public string name;
-    public int powerPerCharge;
-    public int powerCapacity;
-    public float chanceToDodge;
+    public string m_name;
+    public int m_powerPerCharge;
+    public int m_powerCapacity;
+    public float m_chanceToDodge;
 }

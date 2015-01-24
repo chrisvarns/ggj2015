@@ -20,32 +20,32 @@ public class Ship {
             WeaponDef[] pWeaponDefs,
             CrewAbilityDef[] pCrewAbilityDefs)
     {
-        Ship ret = new Ship();
+        Ship ship = new Ship();
         
         // Hull
         HullDef hullDef = pHullDefs[Random.Range(0, pHullDefs.Length)];
-        ret.shp_hulladdr = hullDef;
-        ret.shp_hullhealth = hullDef.maxHealth;
+        ship.m_hullDefinition = hullDef;
+        ship.m_hullHealth = hullDef.m_maxHealth;
         // Oxygen
-        ret.shp_oxamt = Constants.kMaxOxygen;
-        ret.shp_oxstat = Constants.Status.FullyFunctional;
+        ship.m_oxygenLevel = Constants.kMaxOxygen;
+        ship.m_oxygenSystemStatus = Constants.Status.FullyFunctional;
         // Shields
         ShieldDef shieldDef = pShieldDefs[Random.Range(0, pShieldDefs.Length)];
-        ret.shp_shldaddr = shieldDef;
-        ret.shp_shldpwr = (int)(Random.Range(0.2f, 0.5f) * shieldDef.powerCapacity);
-        ret.shp_shldstat = Constants.Status.FullyFunctional;
+        ship.m_shieldDefinition = shieldDef;
+		ship.m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
+		ship.m_shieldSystemStatus = Constants.Status.FullyFunctional;
         // Engines
         EngineDef engineDef = pEngineDefs[Random.Range(0, pEngineDefs.Length)];
-        ret.shp_engaddr = engineDef;
-        ret.shp_engpwr = (int)(Random.Range(0.2f, 0.5f) * engineDef.powerCapacity);
-        ret.shp_engstat = Constants.Status.FullyFunctional;
+        ship.m_engineDefinition = engineDef;
+        ship.m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
+        ship.m_engineSystemStatus = Constants.Status.FullyFunctional;
         // Generator
         GeneratorDef generatorDef = pGeneratorDefs[Random.Range(0, pGeneratorDefs.Length)];
-        ret.shp_genaddr = generatorDef;
-        ret.shp_genstat = Constants.Status.FullyFunctional;
+        ship.m_generatorDefinition = generatorDef;
+        ship.m_generatorSystemStatus = Constants.Status.FullyFunctional;
         // HyperDrive
-        ret.shp_hdpwr = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
-        ret.shp_hdstat = Constants.Status.FullyFunctional;
+        ship.m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
+        ship.m_hyperdriveSystemStatus = Constants.Status.FullyFunctional;
 
         // Weapons 1-4
         int numWeapons = 2 + Random.Range(0, 3);
@@ -54,41 +54,41 @@ public class Ship {
             if (i < numWeapons)
             {
                 WeaponDef weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
-                while (i == 0 && weaponDef.hullDamage == 0)
+                while (i == 0 && weaponDef.m_hullDamage == 0)
                 {
                     weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
                 }
-                ret.shp_weapons[i].wep_saddr = weaponDef;
-                ret.shp_weapons[i].wep_status = Constants.Status.FullyFunctional;
-                ret.shp_weapons[i].wep_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.powerCapacity);
+                ship.m_weapons[i].m_definition = weaponDef;
+                ship.m_weapons[i].m_status = Constants.Status.FullyFunctional;
+                ship.m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
             }
             else
             {
-                ret.shp_weapons[i] = null;
+                ship.m_weapons[i] = null;
             }
         }
 
         // Crew 1-4
         int numCrew = 1 + Random.Range(0, Constants.kMaxCrew);
 
-        return ret;
+        return ship;
     }
 
     private Ship() { }
-    public HullDef shp_hulladdr;
-    public int shp_hullhealth;
-    public GeneratorDef shp_genaddr;
-    public Constants.Status shp_genstat;
-    public int shp_oxamt;
-    public Constants.Status shp_oxstat;
-    public ShieldDef shp_shldaddr;
-    public int shp_shldpwr;
-    public Constants.Status shp_shldstat;
-    public EngineDef shp_engaddr;
-    public int shp_engpwr;
-    public Constants.Status shp_engstat;
-    public int shp_hdpwr;
-    public Constants.Status shp_hdstat;
-    public Weapon[] shp_weapons = new Weapon[4];
-    public Crew[] shp_crew = new Crew[4];
+    public HullDef m_hullDefinition;
+    public int m_hullHealth;
+    public GeneratorDef m_generatorDefinition;
+    public Constants.Status m_generatorSystemStatus;
+    public int m_oxygenLevel;
+    public Constants.Status m_oxygenSystemStatus;
+    public ShieldDef m_shieldDefinition;
+    public int m_shieldPower;
+    public Constants.Status m_shieldSystemStatus;
+    public EngineDef m_engineDefinition;
+    public int m_enginePower;
+    public Constants.Status m_engineSystemStatus;
+    public int m_hyperdrivePower;
+    public Constants.Status m_hyperdriveSystemStatus;
+    public Weapon[] m_weapons = new Weapon[4];
+    public Crew[] m_crew = new Crew[4];
 }

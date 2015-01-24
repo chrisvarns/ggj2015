@@ -15,9 +15,9 @@ public class HullDef {
 
     public HullDef(string pName, int pMaxHealth)
     {
-        name = pName;
-        maxHealth = pMaxHealth;
+        m_name = pName;
+        m_maxHealth = pMaxHealth;
     }
-    public string name;
-    public int maxHealth;
+    public string m_name;
+    public int m_maxHealth;
 }

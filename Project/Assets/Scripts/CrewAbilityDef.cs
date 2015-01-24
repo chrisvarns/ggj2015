@@ -13,7 +13,7 @@ public class CrewAbilityDef {
 	
 	}
 
-    public string name;
-    public int affectedSystem;
-    public int modifier;
+    public string m_name;
+    public int m_affectedSystem;
+    public int m_modifier;
 }

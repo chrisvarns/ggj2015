@@ -15,9 +15,9 @@ public class GeneratorDef {
 
     public GeneratorDef(string pname, int ppowerOutputPerTurn)
     {
-        name = pname;
-        powerOutputPerTurn = ppowerOutputPerTurn;
+        m_name = pname;
+        m_powerOutputPerTurn = ppowerOutputPerTurn;
     }
-    public string name;
-    public int powerOutputPerTurn;
+    public string m_name;
+    public int m_powerOutputPerTurn;
 }

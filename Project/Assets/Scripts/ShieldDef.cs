@@ -15,11 +15,11 @@ public class ShieldDef {
 
     public ShieldDef(string pName, int pPowerPerLayer, int pPowerCapacity)
     {
-        name = pName;
-        powerPerLayer = pPowerPerLayer;
-        powerCapacity = pPowerCapacity;
+        m_name = pName;
+        m_powerPerLayer = pPowerPerLayer;
+        m_powerCapacity = pPowerCapacity;
     }
-    public string name;
-    public int powerPerLayer;
-    public int powerCapacity;
+    public string m_name;
+    public int m_powerPerLayer;
+    public int m_powerCapacity;
 }
