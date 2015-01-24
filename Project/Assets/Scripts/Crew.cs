@@ -2,22 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Crew {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+public enum AssignedSystem : int
+{
+    ENGINES = 0,
+    GENERATOR,
+    HULL,
+    SHIELD,
+    WEAPONS,
+    OXYGEN,
+    HYPERDRIVE,
+    NUMSYSTEMS
+}
 
+
+public class Crew 
+{
     public string m_name;
-	public Constants.Status m_status;
+	public Status m_status;
     public CrewAbilityDef m_definition;
-    public int m_assignedSystem;
+    public AssignedSystem m_assignedSystem;
 
 	public static string[] s_potentialNames =
 	{
@@ -26,20 +30,23 @@ public class Crew {
 		"Riker",
 		"McCoy",
 		"Uhura",
-		"Sulu"
+		"Sulu",
+        "Worf",
+        "Picard"
 	};
 
-	public static Crew Create(List<string> pExistingNames)
+
+	public static Crew Create(List<string> pExistingNames, int system_index)
 	{
 		bool foundUniqueName;
 		string newName;
 		do
 		{
 			foundUniqueName = true;
-			newName = s_potentialNames[Random.Range(0, s_potentialNames.length)];
+			newName = s_potentialNames[Random.Range(0, s_potentialNames.Length)];
 			foreach(string existingName in pExistingNames)
 			{
-				if(existingName = newName)
+				if(existingName == newName)
 				{
 					foundUniqueName = false;
 					break;
@@ -48,11 +55,11 @@ public class Crew {
 		} while(foundUniqueName == false);
 
 		pExistingNames.Add(newName);
-		Crew newCrew;
+        Crew newCrew = new Crew();
 		newCrew.m_name = newName;
 		newCrew.m_definition = null;
-		newCrew.m_status = Constants.Status.HEALTHY;
-		newCrew.m_assignedSystem = Constants.AssignedSystem.UNASSIGNED;
+		newCrew.m_status = Status.HEALTHY;
+		newCrew.m_assignedSystem = (AssignedSystem)system_index;
 		return newCrew;
 	}
 }

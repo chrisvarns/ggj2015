@@ -1,18 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EngineDef {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+public class EngineDef 
+{
     public EngineDef(string pName, int pPowerPerCharge, int pPowerCapacity, float pChanceToDodge)
     {
         m_name = pName;

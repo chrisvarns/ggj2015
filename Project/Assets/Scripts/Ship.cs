@@ -1,18 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Ship {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+public class Ship 
+{
     public static Ship Create(HullDef[] pHullDefs,
             GeneratorDef[] pGeneratorDefs,
             ShieldDef[] pShieldDefs,
@@ -27,24 +19,24 @@ public class Ship {
         ship.m_hullHealth = hullDef.m_maxHealth;
         // Oxygen
         ship.m_oxygenLevel = Constants.kMaxOxygen;
-        ship.m_oxygenSystemStatus = Constants.Status.HEALTHY;
+        ship.m_oxygenSystemStatus = Status.HEALTHY;
         // Shields
         ShieldDef shieldDef = pShieldDefs[Random.Range(0, pShieldDefs.Length)];
         ship.m_shieldDefinition = shieldDef;
 		ship.m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
-		ship.m_shieldSystemStatus = Constants.Status.HEALTHY;
+		ship.m_shieldSystemStatus = Status.HEALTHY;
         // Engines
         EngineDef engineDef = pEngineDefs[Random.Range(0, pEngineDefs.Length)];
         ship.m_engineDefinition = engineDef;
         ship.m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
-        ship.m_engineSystemStatus = Constants.Status.HEALTHY;
+        ship.m_engineSystemStatus = Status.HEALTHY;
         // Generator
         GeneratorDef generatorDef = pGeneratorDefs[Random.Range(0, pGeneratorDefs.Length)];
         ship.m_generatorDefinition = generatorDef;
-        ship.m_generatorSystemStatus = Constants.Status.HEALTHY;
+        ship.m_generatorSystemStatus = Status.HEALTHY;
         // HyperDrive
         ship.m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
-        ship.m_hyperdriveSystemStatus = Constants.Status.HEALTHY;
+        ship.m_hyperdriveSystemStatus = Status.HEALTHY;
 
         // Weapons 1-4
         int numWeapons = 2 + Random.Range(0, 3);
@@ -58,7 +50,7 @@ public class Ship {
                     weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
                 }
                 ship.m_weapons[i].m_definition = weaponDef;
-                ship.m_weapons[i].m_status = Constants.Status.HEALTHY;
+                ship.m_weapons[i].m_status = Status.HEALTHY;
                 ship.m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
             }
             else
@@ -69,10 +61,10 @@ public class Ship {
 
         // Crew 1-4
         int numCrew = 1 + Random.Range(0, Constants.kMaxCrew);
-		List<string> existingNames;
-		for (int i=0; i < Constants.kMaxCrew; i++)
+        List<string> existingNames = new List<string>();
+		for (int i = 0; i < Constants.kMaxCrew; i++)
 		{
-			ship.m_crew[i] = (i < numCrew) ? Crew.Create(existingNames) : ship.m_crew[i] = null;
+			ship.m_crew[i] = (i < numCrew) ? Crew.Create(existingNames, i) : ship.m_crew[i] = null;
 		}
 
         return ship;
@@ -88,17 +80,17 @@ public class Ship {
     public HullDef m_hullDefinition;
     public int m_hullHealth;
     public GeneratorDef m_generatorDefinition;
-    public Constants.Status m_generatorSystemStatus;
+    public Status m_generatorSystemStatus;
     public int m_oxygenLevel;
-    public Constants.Status m_oxygenSystemStatus;
+    public Status m_oxygenSystemStatus;
     public ShieldDef m_shieldDefinition;
     public int m_shieldPower;
-    public Constants.Status m_shieldSystemStatus;
+    public Status m_shieldSystemStatus;
     public EngineDef m_engineDefinition;
     public int m_enginePower;
-    public Constants.Status m_engineSystemStatus;
+    public Status m_engineSystemStatus;
     public int m_hyperdrivePower;
-    public Constants.Status m_hyperdriveSystemStatus;
+    public Status m_hyperdriveSystemStatus;
     public Weapon[] m_weapons = new Weapon[4];
     public Crew[] m_crew = new Crew[4];
 }
