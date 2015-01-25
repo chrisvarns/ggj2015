@@ -13,7 +13,9 @@ public class Utils
 	static public string EnumToString<T>(T penum)
 	{
 		string enumString = penum.toString();
-		return enumString.ToLower();
+		string firstLetter = enumString [0].ToString ().ToUpper ();
+		string restOfString = enumString.Substring(1).ToLower();
+		return firstLetter + restOfString;
 	}
 
 	public Utils ()
