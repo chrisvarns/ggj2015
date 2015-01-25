@@ -76,25 +76,8 @@ public class Ship : MonoBehaviour
         int numWeapons = 2 + Random.Range(0, 3);
         for (int i = 0; i < 4; ++i)
         {
-            if (i < numWeapons)
-            {
-                m_weapons[i] = new Weapon();
-
-                WeaponDef weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
-                while (i == 0 && weaponDef.m_hullDamage == 0)
-                {
-                    weaponDef = pWeaponDefs[Random.Range(0, pWeaponDefs.Length)];
-                }
-                m_weapons[i].m_definition = weaponDef;
-                m_weapons[i].m_status = Status.HEALTHY;
-                m_weapons[i].m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
-            }
-            else
-            {
-                m_weapons[i] = null;
-            }
+			m_weapons[i] = (i < numWeapons) ? Weapon.Create(i==0) : null;
         }
-
 
         // Crew 1-4
         int[] starting_pos = new int[(int)AssignedSystem.__SIZE__];
