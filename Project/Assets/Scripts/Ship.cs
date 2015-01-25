@@ -387,22 +387,53 @@ public class Ship : MonoBehaviour
 		return crewPositions;
 	}
 
-	public List<int> GetUnassignedSystems()
+	public class SystemState
 	{
-		List<int> unassignedSystems = new List<int>();
-		unassignedSystems.Add((int)AssignedSystem.ENGINES);
-		unassignedSystems.Add((int)AssignedSystem.GENERATOR);
-		unassignedSystems.Add((int)AssignedSystem.HULL);
-		unassignedSystems.Add((int)AssignedSystem.HYPERDRIVE);
-		unassignedSystems.Add((int)AssignedSystem.OXYGEN);
-		unassignedSystems.Add((int)AssignedSystem.SHIELD);
-		unassignedSystems.Add((int)AssignedSystem.WEAPONS);
+		public int m_idx;
+		public string m_name;
+		public Status m_status;
+	}
+
+	public Status GetSystemState(AssignedSystem system)
+	{
+		switch (system) {
+				case AssignedSystem.ENGINES:
+						return m_engineSystemStatus;
+				case AssignedSystem.GENERATOR:
+						return m_generatorSystemStatus;
+				case AssignedSystem.HULL:
+						return (m_hullHealth == m_hullDefinition.m_maxHealth)
+			? Status.HEALTHY : (m_hullHealth == 0) ? Status.BROKEN : Status.DAMAGED;
+				case AssignedSystem.HYPERDRIVE:
+						return m_hyperdriveSystemStatus;
+				case AssignedSystem.OXYGEN:
+						return m_oxygenSystemStatus;
+				case AssignedSystem.SHIELD:
+						return m_shieldSystemStatus;
+				case AssignedSystem.WEAPONS:
+						return Status.HEALTHY; // TODO report general health, full for no damage, broken for everything fucked.
+		default:
+			return Status.__SIZE__; // Error condition
+				}
+	}
+
+	public List<SystemState> GetUnassignedSystems()
+	{
+		List<SystemState> unassignedSystems = new List<SystemState>();
+		for(int i=0; i < (int)AssignedSystem.__SIZE__; i++)
+		{
+			SystemState systemState = new SystemState();
+			systemState.m_idx = i;
+			systemState.m_name = ((AssignedSystem)i).ToString();
+			systemState.m_status = GetSystemState((AssignedSystem)i);
+			unassignedSystems.Add(systemState);
+		}
 
 		foreach(Crew crewMem in m_crew)
 		{
 			if(crewMem != null && crewMem.m_status != Status.BROKEN)
 			{
-				unassignedSystems.Remove((int)crewMem.m_assignedSystem);
+				unassignedSystems.Remove(unassignedSystems.Find(w => w.m_idx == (int)crewMem.m_assignedSystem));
 			}
 		}
 		return unassignedSystems;
