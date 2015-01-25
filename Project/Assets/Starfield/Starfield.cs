@@ -56,8 +56,8 @@ public class Starfield : MonoBehaviour
 
 
             float size = cam.orthographicSize + 5f;
-            float x = UnityEngine.Random.Range(-size, size);
-            float y = UnityEngine.Random.Range(-size * 2f, size * 2f);
+            float x = UnityEngine.Random.Range(-size * 2f, size * 2f);
+            float y = UnityEngine.Random.Range(-size, size);
 
             star_inst.transform.localPosition = new Vector3(x, y, 0f);
             star_inst.GetComponent<Star>().position = new Vector3(x, y, 100f);

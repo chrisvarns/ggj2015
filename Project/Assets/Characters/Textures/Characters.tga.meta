@@ -198,7 +198,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_1
@@ -208,7 +208,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_2
@@ -218,7 +218,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_3
@@ -228,7 +228,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_4
@@ -238,7 +238,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_5
@@ -248,7 +248,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_6
@@ -258,7 +258,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_7
@@ -268,7 +268,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_8
@@ -278,7 +278,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_9
@@ -288,7 +288,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_10
@@ -298,7 +298,7 @@ TextureImporter:
         y: 70
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_11
@@ -308,7 +308,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_12
@@ -318,7 +318,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_13
@@ -328,7 +328,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_14
@@ -338,7 +338,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_15
@@ -348,7 +348,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_16
@@ -358,7 +358,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_17
@@ -368,7 +368,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_18
@@ -378,7 +378,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_19
@@ -388,7 +388,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_20
@@ -398,7 +398,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_21
@@ -408,7 +408,7 @@ TextureImporter:
         y: 60
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_22
@@ -418,7 +418,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_23
@@ -428,7 +428,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_24
@@ -438,7 +438,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_25
@@ -448,7 +448,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_26
@@ -458,7 +458,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_27
@@ -468,7 +468,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_28
@@ -478,7 +478,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_29
@@ -488,7 +488,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_30
@@ -498,7 +498,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_31
@@ -508,7 +508,7 @@ TextureImporter:
         y: 50
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_32
@@ -518,7 +518,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_33
@@ -528,7 +528,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_34
@@ -538,7 +538,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_35
@@ -548,7 +548,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_36
@@ -558,7 +558,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_37
@@ -568,7 +568,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_38
@@ -578,7 +578,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_39
@@ -588,7 +588,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_40
@@ -598,7 +598,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_41
@@ -608,7 +608,7 @@ TextureImporter:
         y: 40
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_42
@@ -618,7 +618,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_43
@@ -628,7 +628,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_44
@@ -638,7 +638,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_45
@@ -648,7 +648,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_46
@@ -658,7 +658,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_47
@@ -668,7 +668,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_48
@@ -678,7 +678,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_49
@@ -688,7 +688,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_50
@@ -698,7 +698,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_51
@@ -708,7 +708,7 @@ TextureImporter:
         y: 30
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_52
@@ -718,7 +718,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_53
@@ -728,7 +728,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_54
@@ -738,7 +738,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_55
@@ -748,7 +748,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_56
@@ -758,7 +758,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_57
@@ -768,7 +768,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_58
@@ -778,7 +778,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_59
@@ -788,7 +788,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_60
@@ -798,7 +798,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_61
@@ -808,7 +808,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_62
@@ -818,7 +818,7 @@ TextureImporter:
         y: 10
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_63
@@ -828,7 +828,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_64
@@ -838,7 +838,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_65
@@ -848,7 +848,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_66
@@ -858,7 +858,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_67
@@ -868,7 +868,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_68
@@ -878,7 +878,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_69
@@ -888,7 +888,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_70
@@ -898,7 +898,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_71
@@ -908,7 +908,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_72
@@ -918,7 +918,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Characters_73
@@ -928,7 +928,7 @@ TextureImporter:
         y: 0
         width: 10
         height: 10
-      alignment: 1
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
