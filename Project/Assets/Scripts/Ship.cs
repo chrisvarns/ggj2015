@@ -103,6 +103,8 @@ public class Ship : MonoBehaviour
 		public string m_string;
 		public int m_index;
 		public bool m_isFireable;
+		public int m_power;
+		public bool m_isPowerAddable;
 	}
 
 	public WeaponStatus[] GetWeaponStatus()
@@ -113,6 +115,8 @@ public class Ship : MonoBehaviour
 			if(m_weapons[i] == null) continue;
 			WeaponStatus wepstat = new WeaponStatus();
 			wepstat.m_index = i;
+			wepstat.m_power = m_weapons[i].m_power;
+			wepstat.m_isPowerAddable = (wepstat.m_power < m_weapons[i].m_definition.m_powerCapacity);
 			string statusString = (m_weapons[i].m_status != Status.BROKEN) ?
 					(m_weapons[i].m_power + "/" + m_weapons[i].m_definition.m_powerCapacity
 					+ "[" + m_weapons[i].m_definition.m_powerPerShot + "]")
