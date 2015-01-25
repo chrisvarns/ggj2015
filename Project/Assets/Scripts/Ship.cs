@@ -428,7 +428,7 @@ public class Ship : MonoBehaviour
 		{
 			SystemState systemState = new SystemState();
 			systemState.m_idx = i;
-			systemState.m_name = ((AssignedSystem)i).ToString();
+			systemState.m_name = Utils.EnumToString<AssignedSystem>((AssignedSystem)i).ToString();
 			systemState.m_status = GetSystemState((AssignedSystem)i);
 			unassignedSystems.Add(systemState);
 		}
