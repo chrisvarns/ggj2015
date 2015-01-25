@@ -32,7 +32,7 @@ public class Ship : MonoBehaviour
     public int m_hyperdrivePower;
     private Status m_hyperdriveSystemStatus;
     private Weapon[] m_weapons = new Weapon[4];
-    private Crew[] m_crew = new Crew[4];
+    public Crew[] m_crew = new Crew[4];
 	private List<WeaponDef> m_weaponsFiredThisTurn = new List<WeaponDef>();
 
 
@@ -368,13 +368,16 @@ public class Ship : MonoBehaviour
 	{
 		public string m_name;
 		public AssignedSystem m_system;
+        public int index;
 	}
 
 	public List<CrewPosition> GetCrewPositions()
 	{
 		List<CrewPosition> crewPositions = new List<CrewPosition>();
+        int index = -1;
 		foreach (Crew crewMem in m_crew)
 		{
+            index++;
 			if(crewMem == null || crewMem.m_status == Status.BROKEN)
 			{
 				continue;
@@ -382,6 +385,7 @@ public class Ship : MonoBehaviour
 			CrewPosition crewPos = new CrewPosition();
 			crewPos.m_name = crewMem.m_name;
 			crewPos.m_system = crewMem.m_assignedSystem;
+            crewPos.index = index;
 			crewPositions.Add(crewPos);
 		}
 		return crewPositions;

@@ -18,6 +18,7 @@ public enum MainState
 {
     Power,
     Crew,
+    System,
     Weapons,
     __SIZE__
 }
@@ -35,6 +36,7 @@ public class GuiManager : MonoBehaviour
     public GameState state = GameState.PlayerMain;
     public MainState main_state = MainState.Power;
     public int line_index = 0;
+    public int active_crew_index = 0;
     public int pwn_remaining;
 
 
@@ -90,9 +92,10 @@ public class GuiManager : MonoBehaviour
 
         switch (main_state)
         {
+            #region power_state
             case MainState.Power:
                 {
-                    gui_lines[0].text = "PWR  " + pwn_remaining;
+                    gui_lines[0].text = "Power  " + pwn_remaining;
                     ShipSystemsStat[] ship_stat = active_ship.GetSystemStates();
 
                     gui_lines[2].text = ship_stat[0].name;
@@ -179,7 +182,8 @@ public class GuiManager : MonoBehaviour
                     {
                         if (line_index == 9)        // dont, we want to change state
                         {
-                            // handle the oxygen change power_for_ox;
+                            main_state = MainState.Crew;
+                            line_index = 0;
                         }
                         else
                         {
@@ -216,18 +220,200 @@ public class GuiManager : MonoBehaviour
                     gui_lines[line_index + 2].color = Color.yellow;
                 }
                 break;
+            #endregion
 
+            #region crew_state
             case MainState.Crew:
                 {
+                    gui_lines[0].text = "Crew";
+                    gui_lines[11].text = "Done";
 
+                    int current_line = 2;
+                    Ship.CrewPosition[] crew_list = active_ship.GetCrewPositions().ToArray();
+                    foreach (Ship.CrewPosition pos in crew_list)
+                    {
+                        gui_lines[current_line].text = pos.m_name + "  :  " + pos.m_system;
+                        current_line++;
+                    }
+
+
+                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                    {
+                        if (line_index == 9)
+                        {
+                            line_index = 0;
+                            main_state = MainState.Weapons;
+                            // move to firing weapons...
+                        }
+                        else
+                        {
+                            active_crew_index = crew_list[line_index].index;
+                            line_index = 0;
+                            main_state = MainState.System;
+                        }
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        line_index++;
+                        if (line_index > 9)
+                        {
+                            line_index = 0;
+                        }
+                        if (line_index >= crew_list.Length)
+                        {
+                            line_index = 9;
+                        }
+                    }
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        line_index--;
+                        if (line_index > crew_list.Length - 1)
+                        {
+                            line_index = crew_list.Length - 1;
+                        }
+
+                        if (line_index < 0)
+                        {
+                            line_index = 9;
+                        }
+                    }
+
+                    // TODO : need to account for the exit button
+
+                    gui_lines[line_index + 2].color = Color.yellow;
+                    // set tge active crew index...
                 }
                 break;
+            #endregion
 
+            #region system_state
+            case MainState.System:
+                {
+                    gui_lines[0].text = "Systems  :  " + active_ship.m_crew[active_crew_index].m_name;
+                    gui_lines[11].text = "Back";
+
+                    int current_line = 2;
+                    int[] un_sys = active_ship.GetUnassignedSystems().ToArray();
+                    foreach (int inter in un_sys)
+                    {
+                        switch (inter)
+                        {
+                            case (int)AssignedSystem.ENGINES:
+                                gui_lines[current_line++].text = "Engines";
+                                break;
+
+                            case (int)AssignedSystem.GENERATOR:
+                                gui_lines[current_line++].text = "Generator";
+                                break;
+
+                            case (int)AssignedSystem.HULL:
+                                gui_lines[current_line++].text = "Hull";
+                                break;
+
+                            case (int)AssignedSystem.HYPERDRIVE:
+                                gui_lines[current_line++].text = "Hyperdrive";
+                                break;
+
+                            case (int)AssignedSystem.OXYGEN:
+                                gui_lines[current_line++].text = "Oxygen";
+                                break;
+
+                            case (int)AssignedSystem.SHIELD:
+                                gui_lines[current_line++].text = "Shields";
+                                break;
+
+                            case (int)AssignedSystem.WEAPONS:
+                                gui_lines[current_line++].text = "Weapons";
+                                break;
+                        }
+                    }
+                }
+                break;
+            #endregion
+
+            #region weaoin_state
             case MainState.Weapons:
                 {
+                    gui_lines[0].text = "Weapons";
+                    gui_lines[11].text = "Done";
 
+                    int current_line = 2;
+                    Ship.WeaponStatus[] weps = active_ship.GetWeaponStatus();
+                    foreach (Ship.WeaponStatus wep in weps)
+                    {
+                        gui_lines[current_line].text = wep.m_string;
+                        gui_lines[current_line].color = wep.m_isFireable ? Color.white : Color.gray;
+                        current_line++;
+                    }
+
+
+                    // move down to valid ****************
+                    if (line_index > 9)
+                    {
+                        line_index = 0;
+                    }
+                    while (line_index < weps.Length && !weps[line_index].m_isFireable)
+                    {
+                        line_index++;
+                    }
+                    if (line_index >= weps.Length)
+                    {
+                        line_index = 9;
+                    }
+                    // move down to valid ****************
+
+
+                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                    {
+                        if (line_index == 9)
+                        {
+                            // we are done, change state
+                        }
+                        else
+                        {
+                            // fire the weapon
+                            active_ship.FireWeapon(weps[line_index].m_index);
+                        }
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        line_index++;
+                        if (line_index > 9)
+                        {
+                            line_index = 0;
+                        }
+                        while (line_index < weps.Length && !weps[line_index].m_isFireable)
+                        {
+                            line_index++;
+                        }
+                        if (line_index >= weps.Length)
+                        {
+                            line_index = 9;
+                        }
+                    }
+                    if (Input.GetKeyUp(KeyCode.UpArrow))
+                    {
+                        line_index--;
+                        if (line_index >= weps.Length)
+                        {
+                            line_index = weps.Length - 1;
+                        }
+                        while (line_index >= 0 && !weps[line_index].m_isFireable)
+                        {
+                            line_index--;
+                        }
+                        if (line_index < 0)
+                        {
+                            line_index = 9;
+                        }
+                    }
+
+                    gui_lines[line_index + 2].color = Color.yellow;
                 }
                 break;
+            #endregion
         }
     }
 
