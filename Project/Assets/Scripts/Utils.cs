@@ -10,7 +10,7 @@
 using System;
 public class Utils
 {
-	static public string EnumToString<T>(T penum)
+	static public string EnumToString(AssignedSystem penum)
 	{
 		string enumString = penum.toString();
 		string firstLetter = enumString [0].ToString ().ToUpper ();
