@@ -17,7 +17,7 @@ public class Cam : MonoBehaviour
 	
 	void Update() 
     {
-        FlyRight();
+
 	}
 
     public void FlyRight()

@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+public class ShipSystemsStat
+{
+    public string name;
+    public bool asignable;
+    public int weapon_id;
+}
+
+
 public class Ship : MonoBehaviour
 {
     public GameObject[] position_tags = new GameObject[(int)AssignedSystem.__SIZE__];       // hold gameobject for the position tags.
@@ -16,12 +24,12 @@ public class Ship : MonoBehaviour
     private int m_oxygenLevel;
     private Status m_oxygenSystemStatus;
     private ShieldDef m_shieldDefinition;
-    private int m_shieldPower;
+    public int m_shieldPower;
     private Status m_shieldSystemStatus;
     private EngineDef m_engineDefinition;
-    private int m_enginePower;
+    public int m_enginePower;
     private Status m_engineSystemStatus;
-    private int m_hyperdrivePower;
+    public int m_hyperdrivePower;
     private Status m_hyperdriveSystemStatus;
     private Weapon[] m_weapons = new Weapon[4];
     private Crew[] m_crew = new Crew[4];
@@ -43,6 +51,172 @@ public class Ship : MonoBehaviour
 		return (m_generatorSystemStatus == Status.HEALTHY) ? m_generatorDefinition.m_powerOutputPerTurn
 			: 0;
 	}
+
+    public ShipSystemsStat[] GetSystemStates()
+    {
+        ShipSystemsStat[] states = new ShipSystemsStat[4];
+        for (int i = 0; i < states.Length; i++)
+        {
+            states[i] = new ShipSystemsStat();
+        }
+
+
+        #region engines
+        if (m_engineSystemStatus == Status.HEALTHY)
+        {
+            states[0].name = "Engine  " + m_enginePower + "/" + m_engineDefinition.m_powerCapacity + "[" + m_engineDefinition.m_powerPerCharge + "]";
+            if (m_enginePower != m_engineDefinition.m_powerCapacity)
+            {
+                states[0].asignable = true;
+            }
+            else
+            {
+                states[0].asignable = false;
+            }
+        }
+        else if (m_engineSystemStatus == Status.DAMAGED)
+        {
+            states[0].name = "Engine[DMG]  " + m_enginePower + "/" + m_engineDefinition.m_powerCapacity + "[" + m_engineDefinition.m_powerPerCharge + "]";
+            if (m_enginePower != m_engineDefinition.m_powerCapacity)
+            {
+                states[0].asignable = true;
+            }
+            else
+            {
+                states[0].asignable = false;
+            }
+        }
+        else
+        {
+            states[0].name = "Engines[BKN]";
+            states[0].asignable = false;
+        }
+        #endregion
+
+        #region shield
+
+        if (m_shieldSystemStatus == Status.HEALTHY)
+        {
+            states[1].name = "Shield  " + m_shieldPower + "/" + m_shieldDefinition.m_powerCapacity + "[" + m_shieldDefinition.m_powerPerLayer + "]";
+            if (m_shieldPower != m_shieldDefinition.m_powerCapacity)
+            {
+                states[1].asignable = true;
+            }
+            else
+            {
+                states[1].asignable = false;
+            }
+        }
+        else if (m_shieldSystemStatus == Status.DAMAGED)
+        {
+            states[1].name = "Shield[DMG]  " + m_shieldPower + "/" + m_shieldDefinition.m_powerCapacity + "[" + m_shieldDefinition.m_powerPerLayer + "]";
+            if (m_shieldPower != m_shieldDefinition.m_powerCapacity)
+            {
+                states[1].asignable = true;
+            }
+            else
+            {
+                states[1].asignable = false;
+            }
+        }
+        else if (m_shieldSystemStatus == Status.BROKEN)
+        {
+            states[1].name = "Shield[BKN]";
+            states[1].asignable = false;
+        }
+
+        #endregion
+
+        #region oxygen
+
+        if (m_oxygenSystemStatus == Status.HEALTHY)
+        {
+            states[2].name = "Oxygen  " + m_oxygenLevel + "/" + Constants.kMaxOxygen + "[2]";
+            if (m_oxygenLevel != Constants.kMaxOxygen)
+            {
+                states[2].asignable = true;
+            }
+            else
+            {
+                states[2].asignable = false;
+            }
+        }
+        else if (m_oxygenSystemStatus == Status.DAMAGED)
+        {
+            states[2].name = "Oxygen[DMG]  " + m_oxygenLevel + "/" + Constants.kMaxOxygen + "[1]";
+            if (m_oxygenLevel != Constants.kMaxOxygen)
+            {
+                states[2].asignable = true;
+            }
+            else
+            {
+                states[2].asignable = false;
+            }
+        }
+        else if (m_oxygenSystemStatus == Status.BROKEN)
+        {
+            states[2].name = "Oxygen[BKN]";
+            states[2].asignable = false;
+        }
+
+        #endregion
+
+        #region hyperdrive
+
+        if (m_hyperdriveSystemStatus == Status.HEALTHY)
+        {
+            states[3].name = "Hypedrive  " + m_hyperdrivePower + "/" + Constants.kHDTargetPower;
+            if (m_hyperdrivePower != Constants.kHDTargetPower)
+            {
+                states[3].asignable = true;
+            }
+            else
+            {
+                states[3].asignable = false;
+            }
+        }
+        else if (m_hyperdriveSystemStatus == Status.DAMAGED)
+        {
+            states[3].name = "Hypedrive[DMG]  " + m_hyperdrivePower + "/" + Constants.kHDTargetPower;
+            if (m_hyperdrivePower != Constants.kHDTargetPower)
+            {
+                states[3].asignable = true;
+            }
+            else
+            {
+                states[3].asignable = false;
+            }
+        }
+        else
+        {
+            states[3].name = "Hypedrive[BKN]  " + m_hyperdrivePower + "/" + Constants.kHDTargetPower;
+            states[3].asignable = false;
+        }
+
+        #endregion
+
+        #region weapons
+
+        List<ShipSystemsStat> weapons_stat = new List<ShipSystemsStat>();
+
+        WeaponStatus[] wep_stats = GetWeaponStatus();
+        foreach (WeaponStatus wep in wep_stats)
+        {
+            ShipSystemsStat stat = new ShipSystemsStat();
+            stat.name = wep.m_string;
+            //stat.asignable = wep.m_isFireable;
+            stat.asignable = CanShoot(wep.m_index);
+            stat.weapon_id = wep.m_index;
+            weapons_stat.Add(stat);
+        }
+
+        #endregion
+
+        System.Array.Resize(ref states, 4 + wep_stats.Length);
+        System.Array.Copy(weapons_stat.ToArray(), 0, states, 4, weapons_stat.Count);
+
+        return states;
+    }
 	
 	public int CalculateOxygenUsed()
 	{
@@ -163,6 +337,15 @@ public class Ship : MonoBehaviour
 		wep.m_power++;
 		return true;
 	}
+
+    public bool CanShoot(int index)
+    {
+        if (m_weapons[index].m_power >= m_weapons[index].m_definition.m_powerCapacity)
+        {
+            return false;
+        }
+        return true;
+    }
 
 	public class CrewPosition
 	{
