@@ -175,7 +175,7 @@ public class GuiManager : MonoBehaviour
                         line_index = 9;
                     }
 
-                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                    if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return))
                     {
                         if (line_index == 9)        // dont, we want to change state
                         {
