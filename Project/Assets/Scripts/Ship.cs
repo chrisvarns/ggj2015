@@ -40,36 +40,29 @@ public class Ship : MonoBehaviour
 
     public void Generate()      // genreate a rabdom ship.
     {
-        HullDef[] pHullDefs = HullDef.s_hullDefs;
-        GeneratorDef[] pGeneratorDefs = GeneratorDef.s_generatorDefs;
-        ShieldDef[] pShieldDefs = ShieldDef.s_shieldDefs;
-        EngineDef[] pEngineDefs = EngineDef.s_engineDefs;
-        WeaponDef[] pWeaponDefs = WeaponDef.s_weaponDefs;
-
-        
         // Hull
-        HullDef hullDef = pHullDefs[Random.Range(0, pHullDefs.Length)];
+		HullDef hullDef = HullDef.s_hullDefs[Random.Range(0, HullDef.s_hullDefs.Length)];
         m_hullDefinition = hullDef;
         m_hullHealth = hullDef.m_maxHealth;
         // Oxygen
         m_oxygenLevel = Constants.kMaxOxygen;
         m_oxygenSystemStatus = Status.HEALTHY;
         // Shields
-        ShieldDef shieldDef = pShieldDefs[Random.Range(0, pShieldDefs.Length)];
+		ShieldDef shieldDef = ShieldDef.s_shieldDefs[Random.Range(0, ShieldDef.s_shieldDefs.Length)];
         m_shieldDefinition = shieldDef;
 		m_shieldPower = (int)(Random.Range(0.2f, 0.5f) * shieldDef.m_powerCapacity);
 		m_shieldSystemStatus = Status.HEALTHY;
         // Engines
-        EngineDef engineDef = pEngineDefs[Random.Range(0, pEngineDefs.Length)];
+		EngineDef engineDef = EngineDef.s_engineDefs[Random.Range(0, EngineDef.s_engineDefs.Length)];
         m_engineDefinition = engineDef;
         m_enginePower = (int)(Random.Range(0.2f, 0.5f) * engineDef.m_powerCapacity);
         m_engineSystemStatus = Status.HEALTHY;
         // Generator
-        GeneratorDef generatorDef = pGeneratorDefs[Random.Range(0, pGeneratorDefs.Length)];
+		GeneratorDef generatorDef = GeneratorDef.s_generatorDefs[Random.Range(0, GeneratorDef.s_generatorDefs.Length)];
         m_generatorDefinition = generatorDef;
         m_generatorSystemStatus = Status.HEALTHY;
         // HyperDrive
-        m_hyperdrivePower = 0; // (int)((Random.NextDouble() * 0.3f + 0.2f) * Constants.kHDTargetPower);
+        m_hyperdrivePower = 0;
         m_hyperdriveSystemStatus = Status.HEALTHY;
 
         // Weapons 1-4
@@ -91,7 +84,7 @@ public class Ship : MonoBehaviour
         List<string> existingNames = new List<string>();
 		for (int i = 0; i < Constants.kMaxCrew; i++)
 		{
-            m_crew[i] = (i < numCrew) ? Crew.Create(existingNames, starting_pos[i]) : m_crew[i] = null;
+            m_crew[i] = (i < numCrew) ? Crew.Create(existingNames, starting_pos[i]) : null;
 
             if (m_crew[i] != null)
             {
