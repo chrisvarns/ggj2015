@@ -88,6 +88,7 @@ public class GuiManager : MonoBehaviour
 
     public void PlayerMain()
     {
+        EnableGUI();
         Clear();
 
         switch (main_state)
@@ -294,40 +295,64 @@ public class GuiManager : MonoBehaviour
                     gui_lines[11].text = "Back";
 
                     int current_line = 2;
-                    int[] un_sys = active_ship.GetUnassignedSystems().ToArray();
-                    foreach (int inter in un_sys)
+                    Ship.SystemState[] sys_stat = active_ship.GetUnassignedSystems().ToArray();
+                    foreach (Ship.SystemState sys in sys_stat)
                     {
-                        switch (inter)
+                        gui_lines[current_line].text = sys.m_name;
+                        if (sys.m_status == Status.DAMAGED)
                         {
-                            case (int)AssignedSystem.ENGINES:
-                                gui_lines[current_line++].text = "Engines";
-                                break;
+                            gui_lines[current_line].text += "[DMG]";
+                        }
+                        if (sys.m_status == Status.BROKEN)
+                        {
+                            gui_lines[current_line].text += "[BKN]";
+                        }
+                        current_line++;
+                    }
 
-                            case (int)AssignedSystem.GENERATOR:
-                                gui_lines[current_line++].text = "Generator";
-                                break;
-
-                            case (int)AssignedSystem.HULL:
-                                gui_lines[current_line++].text = "Hull";
-                                break;
-
-                            case (int)AssignedSystem.HYPERDRIVE:
-                                gui_lines[current_line++].text = "Hyperdrive";
-                                break;
-
-                            case (int)AssignedSystem.OXYGEN:
-                                gui_lines[current_line++].text = "Oxygen";
-                                break;
-
-                            case (int)AssignedSystem.SHIELD:
-                                gui_lines[current_line++].text = "Shields";
-                                break;
-
-                            case (int)AssignedSystem.WEAPONS:
-                                gui_lines[current_line++].text = "Weapons";
-                                break;
+                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                    {
+                        if (line_index == 9)
+                        {
+                            line_index = 0;
+                            main_state = MainState.Crew;
+                        }
+                        else
+                        {
+                            // reasign the crew member
+                            active_ship.AssignCrew(active_crew_index, (AssignedSystem)sys_stat[line_index].m_idx);
+                            line_index = 0;
+                            main_state = MainState.Crew;
+                            active_ship.PositionCrew();
                         }
                     }
+
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        line_index++;
+                        if (line_index > 9)
+                        {
+                            line_index = 0;
+                        }
+                        if (line_index >= sys_stat.Length)
+                        {
+                            line_index = 9;
+                        }
+                    }
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        line_index--;
+                        if (line_index >= sys_stat.Length)
+                        {
+                            line_index = sys_stat.Length - 1;
+                        }
+                        if (line_index < 0)
+                        {
+                            line_index = 9;
+                        }
+                    }
+
+                    gui_lines[line_index + 2].color = Color.yellow;
                 }
                 break;
             #endregion
@@ -369,6 +394,8 @@ public class GuiManager : MonoBehaviour
                         if (line_index == 9)
                         {
                             // we are done, change state
+                            line_index = 0;
+                            state = GameState.PlayerExit;
                         }
                         else
                         {
@@ -443,7 +470,9 @@ public class GuiManager : MonoBehaviour
 
     public void PlayerExit()
     {
-
+        Clear();
+        DisableGUI();
+        game_cam.FlyRight();
     }
 
     public void AIEntry()

@@ -315,7 +315,7 @@ public class Ship : MonoBehaviour
 			wepstat.m_string = m_weapons[i].m_definition.m_name + " " + statusString;
 			wepstat.m_isFireable = (m_weapons[i].m_status != Status.BROKEN)
 				&& !m_weapons[i].m_firedThisTurn
-				&& (m_weapons[i].m_power > m_weapons[i].m_definition.m_powerPerShot);
+				&& (m_weapons[i].m_power >= m_weapons[i].m_definition.m_powerPerShot);
 			wepStats.Add(wepstat);
 		}
 		return wepStats.ToArray();
