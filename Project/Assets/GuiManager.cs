@@ -35,7 +35,6 @@ public class GuiManager : MonoBehaviour
     public GameState state = GameState.PlayerMain;
     public MainState main_state = MainState.Power;
     public int line_index = 0;
-    public int power_for_ox = 0;
     public int pwn_remaining;
 
 
@@ -197,7 +196,7 @@ public class GuiManager : MonoBehaviour
                                     break;
 
                                 case 2:
-                                    power_for_ox++;
+                                    active_ship.AddOxygen();
                                     pwn_remaining--;
                                     break;
 
@@ -208,6 +207,7 @@ public class GuiManager : MonoBehaviour
 
                                 default:
                                     active_ship.AddPowerToWeapon(ship_stat[line_index].weapon_id);
+                                    pwn_remaining--;
                                     break;
                             }
                         }

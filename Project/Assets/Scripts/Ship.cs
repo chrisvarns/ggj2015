@@ -52,6 +52,23 @@ public class Ship : MonoBehaviour
 			: 0;
 	}
 
+    public void AddOxygen()
+    {
+        if (m_oxygenSystemStatus == Status.HEALTHY)
+        {
+            m_oxygenLevel += 2;
+        }
+        else
+        {
+            m_oxygenLevel++;
+        }
+
+        if (m_oxygenLevel > Constants.kMaxOxygen)
+        {
+            m_oxygenLevel = Constants.kMaxOxygen;
+        }
+    }
+
     public ShipSystemsStat[] GetSystemStates()
     {
         ShipSystemsStat[] states = new ShipSystemsStat[4];
