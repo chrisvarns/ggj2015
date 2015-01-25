@@ -357,7 +357,7 @@ public class Ship : MonoBehaviour
 
     public bool CanShoot(int index)
     {
-        if (m_weapons[index].m_power >= m_weapons[index].m_definition.m_powerCapacity)
+        if (m_weapons[index].m_power >= m_weapons[index].m_definition.m_powerPerShot)
         {
             return false;
         }
