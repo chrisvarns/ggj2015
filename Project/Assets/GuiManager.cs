@@ -238,7 +238,7 @@ public class GuiManager : MonoBehaviour
                     }
 
 
-                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+					if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return))
                     {
                         if (line_index == 9)
                         {
@@ -310,7 +310,7 @@ public class GuiManager : MonoBehaviour
                         current_line++;
                     }
 
-                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+					if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return))
                     {
                         if (line_index == 9)
                         {
@@ -389,7 +389,7 @@ public class GuiManager : MonoBehaviour
                     // move down to valid ****************
 
 
-                    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+					if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return))
                     {
                         if (line_index == 9)
                         {
