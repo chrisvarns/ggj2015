@@ -6,7 +6,8 @@ public enum Status : int
 {
     BROKEN = 0,
     DAMAGED = 1,
-    HEALTHY = 2
+    HEALTHY = 2,
+    __SIZE__
 };
 
 public class Constants 

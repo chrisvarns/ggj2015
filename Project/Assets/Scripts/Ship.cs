@@ -146,6 +146,13 @@ public class Ship : MonoBehaviour
             crew.instance.transform.parent = position_tags[(int)crew.m_assignedSystem].transform;
             crew.instance.transform.localPosition = Vector3.zero;
             crew.instance.transform.localRotation = Quaternion.identity;
+
+            string[] anim_names = new string[] { "Death", "Hurt", "Idle" };
+            int namehash = Animator.StringToHash(anim_names[(int)crew.m_status]);
+            if (crew.instance.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).nameHash != namehash)
+            {
+                crew.instance.GetComponent<Animator>().Play(namehash);      // if its a differnt anim play it
+            }
         }
     }
 }
