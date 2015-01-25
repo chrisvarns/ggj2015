@@ -7,6 +7,7 @@ public class Weapon
     public WeaponDef m_definition;
     public int m_power;
     public Status m_status;
+	public bool m_firedThisTurn;
 
 	public static Weapon Create(bool forceHullDamage)
 	{		
@@ -20,6 +21,7 @@ public class Weapon
 		wep.m_definition = weaponDef;
 		wep.m_status = Status.HEALTHY;
 		wep.m_power = (int)(Random.Range(0.2f, 0.5f) * weaponDef.m_powerCapacity);
+		wep.m_firedThisTurn = false;
 
 		return wep;
 	}

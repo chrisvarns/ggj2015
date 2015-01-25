@@ -25,6 +25,7 @@ public class Ship : MonoBehaviour
     private Status m_hyperdriveSystemStatus;
     private Weapon[] m_weapons = new Weapon[4];
     private Crew[] m_crew = new Crew[4];
+	private List<WeaponDef> m_weaponsFiredThisTurn = new List<WeaponDef>();
 
 
     void Start()
@@ -37,6 +38,176 @@ public class Ship : MonoBehaviour
 
     }
 
+	public int CalculatePowerToSpend()
+	{
+		return (m_generatorSystemStatus == Status.HEALTHY) ? m_generatorDefinition.m_powerOutputPerTurn
+			: 0;
+	}
+	
+	public int CalculateOxygenUsed()
+	{
+		int oxygenUsed = 0;
+		foreach (Crew crewMem in m_crew)
+		{
+			if(crewMem != null)
+			{
+				oxygenUsed += (crewMem.m_race != Race.Android) ? 1 : 0;
+			}
+		}
+		return oxygenUsed;
+	}
+
+	public void DamageNoOxygen()
+	{
+		foreach (Crew crewMem in m_crew)
+		{
+			if(crewMem != null)
+			{
+				crewMem.m_status -= (crewMem.m_status != Status.BROKEN) ? 1 : 0;
+			}
+		}
+		PositionCrew ();
+	}
+
+	public int ComputeOxygenChange(int powerAdded)
+	{
+		int oxygenUsed = CalculateOxygenUsed ();
+		int powerToOxygenRatio = (int)m_oxygenSystemStatus;
+		int oxygenGenerated = powerAdded * powerToOxygenRatio;
+		m_oxygenLevel = Mathf.Clamp (oxygenGenerated - oxygenUsed, 0, Constants.kMaxOxygen);
+		if (m_oxygenLevel == 0)
+		{
+			DamageNoOxygen();
+		}
+		return m_oxygenLevel;
+	}
+
+	public bool isAnyCrewAlive()
+	{
+		foreach (Crew crewMem in m_crew) {
+			if (crewMem != null && crewMem.m_status != Status.BROKEN)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public bool isShipAlive()
+	{
+		return m_hullHealth > 0;
+	}
+
+	public class WeaponStatus
+	{
+		public string m_string;
+		public int m_index;
+		public bool m_isFireable;
+	}
+
+	public WeaponStatus[] GetWeaponStatus()
+	{
+		List<WeaponStatus> wepStats = new List<WeaponStatus>();
+		for(int i = 0; i < m_weapons.Length; i++)
+		{
+			if(m_weapons[i] == null) continue;
+			WeaponStatus wepstat = new WeaponStatus();
+			wepstat.m_index = i;
+			string statusString = (m_weapons[i].m_status != Status.BROKEN) ?
+					(m_weapons[i].m_power + "/" + m_weapons[i].m_definition.m_powerCapacity
+					+ "[" + m_weapons[i].m_definition.m_powerPerShot + "]")
+					: ("[BRK]") ;
+			wepstat.m_string = m_weapons[i].m_definition.m_name + " " + statusString;
+			wepstat.m_isFireable = (m_weapons[i].m_status != Status.BROKEN)
+				&& !m_weapons[i].m_firedThisTurn
+				&& (m_weapons[i].m_power > m_weapons[i].m_definition.m_powerPerShot);
+			wepStats.Add(wepstat);
+		}
+		return wepStats.ToArray();
+	}
+
+	public bool FireWeapon(int index)
+	{
+		Weapon wepToFire = m_weapons [index];
+		if (wepToFire == null || wepToFire.m_firedThisTurn)
+		{
+			return false;
+		}
+		wepToFire.m_power -= wepToFire.m_definition.m_powerPerShot;
+		wepToFire.m_firedThisTurn = true;
+		m_weaponsFiredThisTurn.Add(wepToFire.m_definition);
+		return true;
+	}
+
+	public void ResetWeaponFiredStatus()
+	{
+		foreach (Weapon wep in m_weapons) {
+			if(wep != null)
+			{
+				wep.m_firedThisTurn = false;
+			}
+		}
+		m_weaponsFiredThisTurn.Clear();
+	}
+
+	public bool AddPowerToWeapon(int index)
+	{
+		Weapon wep = m_weapons [index];
+		if (wep == null || wep.m_power == wep.m_definition.m_powerCapacity) {
+			return false;
+		}
+		wep.m_power++;
+		return true;
+	}
+
+	public class CrewPosition
+	{
+		public string m_name;
+		public AssignedSystem m_system;
+	}
+
+	public List<CrewPosition> GetCrewPositions()
+	{
+		List<CrewPosition> crewPositions = new List<CrewPosition>();
+		foreach (Crew crewMem in m_crew)
+		{
+			if(crewMem == null || crewMem.m_status == Status.BROKEN)
+			{
+				continue;
+			}
+			CrewPosition crewPos = new CrewPosition();
+			crewPos.m_name = crewMem.m_name;
+			crewPos.m_system = crewMem.m_assignedSystem;
+			crewPositions.Add(crewPos);
+		}
+		return crewPositions;
+	}
+
+	public List<int> GetUnassignedSystems()
+	{
+		List<int> unassignedSystems = new List<int>();
+		unassignedSystems.Add((int)AssignedSystem.ENGINES);
+		unassignedSystems.Add((int)AssignedSystem.GENERATOR);
+		unassignedSystems.Add((int)AssignedSystem.HULL);
+		unassignedSystems.Add((int)AssignedSystem.HYPERDRIVE);
+		unassignedSystems.Add((int)AssignedSystem.OXYGEN);
+		unassignedSystems.Add((int)AssignedSystem.SHIELD);
+		unassignedSystems.Add((int)AssignedSystem.WEAPONS);
+
+		foreach(Crew crewMem in m_crew)
+		{
+			if(crewMem != null && crewMem.m_status != Status.BROKEN)
+			{
+				unassignedSystems.Remove((int)crewMem.m_assignedSystem);
+			}
+		}
+		return unassignedSystems;
+	}
+
+	public void AssignCrew(int crewID, AssignedSystem system)
+	{
+		m_crew[crewID].m_assignedSystem = system;
+	}
 
     public void Generate()      // genreate a rabdom ship.
     {
@@ -94,6 +265,8 @@ public class Ship : MonoBehaviour
                 m_crew[i].instance.transform.rotation = Quaternion.identity;
             }
 		}
+
+		m_weaponsFiredThisTurn.Clear();
 
         PositionCrew();
     }
