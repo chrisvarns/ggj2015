@@ -12,7 +12,7 @@ public class Utils
 {
 	static public string EnumToString(AssignedSystem penum)
 	{
-		string enumString = penum.ToString();
+		string enumString = Enum.GetName(typeof(AssignedSystem), penum);
 		string firstLetter = enumString [0].ToString ().ToUpper ();
 		string restOfString = enumString.Substring(1).ToLower();
 		return firstLetter + restOfString;

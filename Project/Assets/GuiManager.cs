@@ -233,7 +233,7 @@ public class GuiManager : MonoBehaviour
                     Ship.CrewPosition[] crew_list = active_ship.GetCrewPositions().ToArray();
                     foreach (Ship.CrewPosition pos in crew_list)
                     {
-                        gui_lines[current_line].text = pos.m_name + "  :  " + pos.m_system;
+                        gui_lines[current_line].text = pos.m_name + "  :  " + Utils.EnumToString((AssignedSystem)pos.m_system);
                         current_line++;
                     }
 
